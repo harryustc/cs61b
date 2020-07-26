@@ -1,7 +1,7 @@
-/**
- *  Tests Nbody.readPlanets. Reads in ./data/planets.txt and checks output of
- *  readPlanets().
- */
+//**
+// *  Tests Nbody.readPlanets. Reads in ./data/planets.txt and checks output of
+// *  readPlanets().
+// */
 public class TestReadPlanets {
 
     private static boolean doubleEquals(double actual, double expected, double eps) {
@@ -12,8 +12,8 @@ public class TestReadPlanets {
     private static String checkReadPlanets() {
         System.out.println("Checking readPlanets...");
         String planetsTxtPath = "./data/planets.txt";
-        /* If the following line fails to compile, you probably need to make
-         * a certain method static! */
+       // /* If the following line fails to compile, you probably need to make
+        // * a certain method static! */
         Planet[] actualOutput = NBody.readPlanets(planetsTxtPath);
 
         /* Check the simple things: */
