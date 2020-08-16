@@ -13,7 +13,7 @@ public class ArrayDeque<T> {
 
     //tail point to the place followed by the last item of this Deque.
     private int calTail(int head, int size, int vol){
-        return (head + size + 1)%vol;
+        return (head + size)%vol;
     }
 
     private boolean isFull(){
@@ -36,7 +36,7 @@ public class ArrayDeque<T> {
         }
 
         ++size;
-        head = (head-1)<0? vol: head-1;
+        head = (head-1)<0? vol-1: head-1;
         this.item[head] = item;
     }
 
@@ -74,8 +74,9 @@ public class ArrayDeque<T> {
         }
 
         --size;
+        int rm = head;
         head = (head + 1) % vol;
-        return item[head];
+        return item[rm];
     }
 
     public T removeLast(){
@@ -84,8 +85,8 @@ public class ArrayDeque<T> {
         }
 
         --size;
-        int newtail = calTail(head, size, vol) - 1;
-        return newtail<0? item[vol]: item[newtail];
+        int newtail = calTail(head, size, vol);
+        return item[newtail];
     }
 
     public T get(int index){
@@ -95,5 +96,29 @@ public class ArrayDeque<T> {
 
         return item[(index + head) % vol];
     }
+
+    /*
+    public static void main(String[] args){
+        ArrayDeque<Double> a = new ArrayDeque<Double>();
+        for(int i = 0; i<8; i++) {
+            a.addFirst(1.1*i);
+        }
+        a.printDeque();
+        System.out.println(a.get(7));
+        a.addLast(10.1);
+        a.addLast(11.1);
+        a.addLast(12.1);
+        a.removeFirst();
+        a.printDeque();
+        System.out.println("size=" + a.size());
+
+        ArrayDeque<Integer> b = new ArrayDeque<Integer>();
+        for(int i=0; i<20; ++i) {
+            b.addLast(i+1);
+        }
+        b.printDeque();
+        System.out.println("size=" + b.size());
+    }
+     */
 
 }

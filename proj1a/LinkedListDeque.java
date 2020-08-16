@@ -3,19 +3,19 @@ public class LinkedListDeque<T> {
     private final TNode tail;
     private int size;
 
-    private class TNode{
+    private class TNode {
         public T val;
         public TNode prev;
         public TNode next;
 
-        public TNode(T v, TNode p, TNode n){
+        public TNode(T v, TNode p, TNode n) {
             val = v;
             prev = p;
             next = n;
         }
     }
 
-    public LinkedListDeque(){
+    public LinkedListDeque() {
         size = 0;
         head = new TNode(null, null, null);
         tail = new TNode(null, null, null);
@@ -24,19 +24,19 @@ public class LinkedListDeque<T> {
         tail.prev = head;
     }
 
-    public void addFirst(T item){
+    public void addFirst(T item) {
         size++;
         head.next.prev = new TNode(item, head, head.next);
         head.next = head.next.prev;
     }
 
-    public void addLast(T item){
+    public void addLast(T item) {
         size++;
         tail.prev.next = new TNode(item, tail.prev, tail);
         tail.prev = tail.prev.next;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return (size==0);
     }
 
@@ -44,17 +44,17 @@ public class LinkedListDeque<T> {
         return size;
     }
 
-    public void printDeque(){
+    public void printDeque() {
         TNode p = head.next;
-        while(p.next != null){
+        while(p.next != null) {
             System.out.print(p.val + " ");
             p = p.next;
         }
         System.out.println();
     }
 
-    public T removeFirst(){
-        if(isEmpty()){
+    public T removeFirst() {
+        if(isEmpty()) {
             return null;
         }
 
@@ -65,7 +65,7 @@ public class LinkedListDeque<T> {
         return v;
     }
 
-    public T removeLast(){
+    public T removeLast() {
         if(isEmpty()){
             return null;
         }
@@ -77,19 +77,19 @@ public class LinkedListDeque<T> {
         return v;
     }
 
-    public T get(int index){
-        if(isEmpty() || index >= size || index<0){
+    public T get(int index) {
+        if(isEmpty() || index >= size || index<0) {
             return null;
         }
 
         TNode p = head.next;
-        for(; index>0; --index){
+        for(; index>0; --index) {
             p = p.next;
         }
         return p.val;
     }
 
-    public T getRecursive(int index, TNode np){
+    private T getRecursive(int index, TNode np) {
         if(index == 0){
             return np.val;
         }
@@ -97,11 +97,12 @@ public class LinkedListDeque<T> {
         return getRecursive(index-1, np.next);
     }
 
-    public T getRecursive(int index){
-        if(isEmpty() || index >= size || index<0){
+    public T getRecursive(int index) {
+        if(isEmpty() || index >= size || index<0) {
             return null;
         }
 
         return getRecursive(index, head.next);
     }
+
 }
