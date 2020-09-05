@@ -10,6 +10,7 @@ public class TestOffByOne {
     @Test
     public void testOffByOne() {
         assertFalse(offByOne.equalChars('x', 'x'));
+        assertFalse(offByOne.equalChars('a', 'y'));
         assertTrue(offByOne.equalChars('w', 'x'));
         assertTrue(offByOne.equalChars('&', '%'));
         assertTrue(offByOne.equalChars('x', 'y'));
@@ -24,10 +25,9 @@ public class TestOffByOne {
         assertTrue(palindrom.isPalindrome("s"));
 
         Palindrome palindrome = new Palindrome();
-        CharacterComparator cc = new OffByOne();
-        assertFalse(palindrome.isPalindrome("woshinidabaow", cc));
-        assertTrue(palindrome.isPalindrome("flake", cc));
-        assertTrue(palindrome.isPalindrome("", cc));
-        assertTrue(palindrome.isPalindrome("s", cc));
+        assertFalse(palindrome.isPalindrome("woshinidabaow", offByOne));
+        assertTrue(palindrome.isPalindrome("flake", offByOne));
+        assertTrue(palindrome.isPalindrome("", offByOne));
+        assertTrue(palindrome.isPalindrome("s", offByOne));
     }
 }
